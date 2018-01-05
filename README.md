@@ -1,5 +1,5 @@
 # HomeAccounting
-
+Application for calculating the family budget
 
 ## Table of Contents
 
@@ -25,31 +25,46 @@ https://github.com/Bumbilo/home-accounting.git
 Project contains two sub-projects for back-end and front-end sources. Front-end sub-project contains two modules for website and administration panel sources.
 ```sh
 angular-project/
-|----design        // Folder with design project
-|----e2e           // Tests files
-|----node_modules  // Source libraries
-|----src/          // This is the root folder, and it contains all the project files
-|     |--app/      // This folder contains the Angular code files
-|     |--asset/
-|     |--enviroments/
-|     |--index.html
-|     |--main.ts
-|     |--polyfills.ts
-|     |--styles.sass
-|     |--test.ts
-|     |--tsconfig.app.json
-|     |--tsconfig.spec.json
-|     |--typings.d.ts
-|----.angular-cli.json
-|----.editorconfig
-|----.gitignore
-|----karma.conf.js
-|----package.json   // This file used by NPM for its configuration file
-|----package-lock.json
-|----protractor.conf.js
-|----README.md
-|----tsconfig.json
-|----tslint.json
+|----design/                          // Folder with design project
+|----e2e/                             // Tests files
+|     |--app.e2e-spec.ts              //
+|     |--app.po.ts                    //
+|----node_modules/                    // Source libraries
+|----server/                          // Server for application
+|     |--index.js                     // Root file for nodejs server
+|----src/                             // This is the root folder
+|     |--app/                         // This folder contains the Angular code files
+|         |--app.component.html       //
+|         |--app.component.sass       //
+|         |--app.component.spec.ts    //
+|         |--app.component.ts         //
+|         |--app.module.ts            //
+|     |--asset/                       // Folder for static files
+|         |--fonts/                   // All fonts for project
+|         |--.gitkeep                 //
+|         |--theme.css                //
+|         |--vendor.css               //
+|     |--enviroments/                 //
+|         |--environment.prod.ts      //
+|         |--environment.ts           //
+|     |--index.html                   //
+|     |--main.ts                      //
+|     |--polyfills.ts                 //
+|     |--styles.sass                  //
+|     |--test.ts                      //
+|     |--tsconfig.app.json            //
+|     |--tsconfig.spec.json           //
+|     |--typings.d.ts                 //
+|----.angular-cli.json                //
+|----.editorconfig                    //
+|----.gitignore                       //
+|----karma.conf.js                    //
+|----package.json                     // This file used by NPM for its configuration file
+|----package-lock.json                //
+|----protractor.conf.js               //
+|----README.md                        //
+|----tsconfig.json                    //
+|----tslint.json                      //
 ```
 
 ## Back-end
@@ -75,7 +90,7 @@ angular-project/
 | Category  | Technology                           |
 | --------- | ------------------------------------ |
 | Language  | JavaScript, TypeScript               |
-| Framework | AngularJS 2                          |
+| Framework | AngularJS 5                          |
 | Libraries |                                	     |
 | Testing   | Karma                                |
 | Building  | ngCLI                                |
