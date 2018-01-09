@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { UserService } from "./shared/services/user.service";
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { HttpModule } from '@angular/http';
     AuthModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
