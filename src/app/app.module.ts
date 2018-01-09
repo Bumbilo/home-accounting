@@ -15,7 +15,6 @@ import { HttpModule } from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     AuthModule,
     AppRoutingModule
