@@ -1,29 +1,51 @@
 <p class="text-xs-center">Login</p>
-<form>
-  <div class="form-group">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group" [ngClass]="{'has-error' : form.get('email').invalid && form.get('email').touched}">
     <label for="email">Email</label>
     <input
       type="text"
       class="form-control underlined"
       id="email"
       placeholder="Enter your email"
+      formControlName="email"
     >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('email').invalid && form.get('email').touched"
+    >
+      <span *ngIf="form.get('email')['errors']['required']">Email is empty ! </span>
+      <span *ngIf="form.get('email')['errors']['email']">Enter correct email ! </span>
+    </span>
   </div>
-  <div class="form-group">
+  <div
+    class="form-group"
+    [ngClass]="{'has-error' : form.get('password').invalid && form.get('password').touched}">
     <label for="password">Password</label>
     <input
       type="password"
       class="form-control underlined"
       id="password"
       placeholder="Password"
+      formControlName="password"
     >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('password').invalid && form.get('password').touched"
+    >
+      <span *ngIf="form.get('password')['errors']['required']">Password is empty ! </span>
+      <span *ngIf="form.get('password')['errors']['minlength']">Minimum length password is 6 ! But now  {{form.get('password')['errors']['minlength']['actualLength']}} </span>
+  </span>
   </div>
+
   <div class="form-group">
-    <button type="submit" class="btn btn-block btn-primary">Войти</button>
+    <button
+      type="submit"
+      class="btn btn-block btn-primary"
+      [disabled]="form.invalid">Войти</button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      No account? <a href="#">Sign Up!</a>
+      No account?<a href="#">Sign Up!</a>
     </p>
   </div>
 </form>
