@@ -11,7 +11,7 @@ export class UserService {
   }
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.get(`http://localhost:3000/users?${email}`)
+    return this.http.get(`http://localhost:3030/users?${email}`)
       .map((response: Response) => response.json());
       // .map((user: User) => console.log(user));
   }
