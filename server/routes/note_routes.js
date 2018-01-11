@@ -4,6 +4,12 @@ module.exports = function (app, database) {
   // Create connect with DB
   const db = database.db('home_accounting');
 
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -32,6 +38,21 @@ module.exports = function (app, database) {
   app.get('/notes/:id', (req, res) => {
     const id = req.params.id;
     const detail = {'_id': new ObjectID(id)};
+    db.collection('users').findOne(detail, (err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    })
+  });
+
+  app.get('/user/:email', (req, res) => {
+    const email = req.params.email;
+    const detail = {'email': email};
+
+    console.log('req', req.params)
+
     db.collection('users').findOne(detail, (err, item) => {
       if (err) {
         res.send({'error': 'An error has occurred'});

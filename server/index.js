@@ -21,24 +21,8 @@ MongoClient.connect(db.url, (err, db) => {
 
 });
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.get('/', (req, res) => {
   res.send('Hello world');
-});
-
-
-app.get('/users', (req, res, next) => {
-  db.createCollection('user', {"collaction": "hello collection"}, (err, result) => {
-    if (err) {
-      console.log('Collaction Err ===>', err);
-    }
-
-    console.log(result)
-  })
 });
 
