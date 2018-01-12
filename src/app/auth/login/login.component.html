@@ -1,4 +1,8 @@
 <p class="text-xs-center">Login</p>
+<div
+  class="alert alert-{{massage.type}}"
+  *ngIf="message.text";
+>{{message.text}}</div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group" [ngClass]="{'has-error' : form.get('email').invalid && form.get('email').touched}">
     <label for="email">Email</label>
@@ -41,7 +45,8 @@
     <button
       type="submit"
       class="btn btn-block btn-primary"
-      [disabled]="form.invalid">Войти</button>
+      [disabled]="form.invalid">Войти
+    </button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">

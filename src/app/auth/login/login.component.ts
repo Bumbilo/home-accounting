@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserService} from "../../shared/services/user.service";
-import {User} from "../../shared/models/user.model";
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/models/user.model';
+import {Message} from '../../shared/models/message.model';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import {User} from "../../shared/models/user.model";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  message: Message;
 
   constructor(private userService: UserService) {
   }
@@ -22,11 +24,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  private showMessage(text: string, type: string = 'danger') {
+    this.message = new Message(type, text);
+    window.setTimeout(() => {
+      this.message = '';
+    }, 5000);
+  }
+
   onSubmit() {
     const formData = this.form.value;
     this.userService.getUserByEmail(formData.email).subscribe((user: User) => {
-      console.log(user);
-    } );
+      if (user) {
+        if (user.password === formData.password) {
+        } else {
+          this.showMessage('Invalid password !!!');
+        }
+      } else {
+        this.showMessage('User is not found !!!');
+      }
+    });
   }
 
 }

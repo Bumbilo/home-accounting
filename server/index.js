@@ -8,8 +8,6 @@ const port = 8000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-
 MongoClient.connect(db.url, (err, db) => {
   if (err) return console.log(err);
 
@@ -20,7 +18,6 @@ MongoClient.connect(db.url, (err, db) => {
   });
 
 });
-
 
 app.get('/', (req, res) => {
   res.send('Hello world');
