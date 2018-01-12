@@ -14,7 +14,6 @@ export class UserService {
     return this.http.get(`http://localhost:8000/user/${email}`).map((response: Response) => {
       return response._body: Observable === '' ? null : response.json();
     });
-    // .map((user: User) => console.log(user));
   }
 
 }
