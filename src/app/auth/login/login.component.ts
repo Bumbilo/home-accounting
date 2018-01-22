@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/models/user.model';
 import { Message } from '../../shared/models/message.model';
 
@@ -14,11 +15,14 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message: Message;
 
-  constructor(private userService: UserService) {
+  constructor(
+     private userService: UserService,
+     private authService: AuthService
+  ) {
   }
 
   ngOnInit() {
-   this.message = new Message();
+   this.message = new Message('danger', '');
 
   // Validation form before send form
    this.form = new FormGroup({
@@ -29,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   // Method show error messege if auth invalid
   private showMessage(text: string, type: string ) {
-  console.log('arguments ===>', arguments)
     this.message = new Message(type , text);
     window.setTimeout(() => {
       this.message = '';
@@ -43,10 +46,10 @@ export class LoginComponent implements OnInit {
       if (user) {
         if (user.password === formData.password) {
         } else {
-          this.showMessage('Invalid password !!!');
+          this.showMessage('Invalid password !!!', 'danger');
         }
       } else {
-        this.showMessage('User is not found !!!');
+        this.showMessage('User is not found !!!', 'danger');
       }
     });
   }

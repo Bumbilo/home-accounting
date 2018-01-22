@@ -1,6 +1,6 @@
 <p class="text-xs-center">Login</p>
 <div
-  class="alert alert-{{massage.type}}"
+  class="alert alert-{{message.type}}"
   *ngIf="message.text"
 >{{message.text}}</div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
