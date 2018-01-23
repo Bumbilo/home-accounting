@@ -21,7 +21,7 @@ import { AuthService } from "./shared/services/auth.service";
     AuthModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { UserService } from '../../shared/services/user.service';
 import { AuthService } from '../../shared/services/auth.service';
-import { User } from '../../shared/models/user.model';
 import { Message } from '../../shared/models/message.model';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,39 +14,43 @@ import { Message } from '../../shared/models/message.model';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
-  message: Message;
+   form: FormGroup;
+   message: Message;
 
   constructor(
      private userService: UserService,
-     private authService: AuthService
+     private authService: AuthService,
+     private router: Router
   ) {
   }
 
   ngOnInit() {
    this.message = new Message('danger', '');
 
-  // Validation form before send form
+  // vsalidation form before send form
    this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
-  // Method show error messege if auth invalid
+  // show error messege if auth invalid
   private showMessage(text: string, type: string ) {
     this.message = new Message(type , text);
-    window.setTimeout(() => {
-      this.message = '';
-    }, 5000);
+    // hide message after 5 second
+    window.setTimeout(() => this.message = '', 5000);
   }
 
-  // Method send form for auth
+  // send form for auth
   onSubmit() {
     const formData = this.form.value;
     this.userService.getUserByEmail(formData.email).subscribe((user: User) => {
+      console.log('user', user)
       if (user) {
-        if (user.password === formData.password) {
+        if (user.password == formData.password) {
+           window.localStorage.setItem('user', JSON.stringify(user));
+           this.authService.login();
+           // this.router.navigate([''])
         } else {
           this.showMessage('Invalid password !!!', 'danger');
         }

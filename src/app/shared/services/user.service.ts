@@ -9,12 +9,17 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  // Method get user information by ID
+  // validation response
+  getResponse(response: Response) {
+   if (response._body) {
+      return response.json();
+   }
+   return null;
+ }
+
+  // get user information by ID
   getUserByEmail(email: string): Observable<User> {
     return this.http.get(`http://localhost:8000/user/${email}`)
-    .map((response: Response) => {
-      return response._body: Observable == '' ? null : response.json();
-   });
+    .map((response: Response) => this.getResponse(response));
   }
-
 }
