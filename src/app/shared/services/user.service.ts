@@ -11,7 +11,7 @@ export class UserService {
 
   // validation response
   getResponse(response: Response) {
-   if (response._body) {
+   if (response['_body']) {
       return response.json();
    }
    return null;
@@ -23,7 +23,8 @@ export class UserService {
     .map((response: Response) => this.getResponse(response));
   }
 
-  createNewUser(): Observable<User> {
-     return this.http.post()
+  createNewUser(user: User): Observable<User> {
+     return this.http.post(`http://localhost:8000/user`, user)
+     .map((response: Response) => this.getResponse(response));
  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UserService } from '../../shared/services/user.service';
 import { AuthService } from '../../shared/services/auth.service';
@@ -20,12 +20,20 @@ export class LoginComponent implements OnInit {
   constructor(
      private userService: UserService,
      private authService: AuthService,
-     private router: Router
+     private router: Router,
+     private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-   this.message = new Message('danger', '');
+    this.route.queryParams.subscribe((params: Params) => {
+      console.log(params)
+      if(params['nowCanLogin']) {
+        console.log('true')
+        this.showMessage('Now you can enter to system !!!', 'success')
+      }
+    });
+    this.message = new Message('danger', '');
 
   // vsalidation form before send form
    this.form = new FormGroup({
@@ -38,7 +46,9 @@ export class LoginComponent implements OnInit {
   private showMessage(text: string, type: string ) {
     this.message = new Message(type , text);
     // hide message after 5 second
-    window.setTimeout(() => {this.message = ''}, 5000);
+    window.setTimeout(() => {
+      this.message = new Message('danger', '');
+    }, 5000);
   }
 
   // send form for auth

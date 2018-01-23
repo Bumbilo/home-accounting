@@ -51,11 +51,19 @@ module.exports = function (app, database) {
     })
   });
 
+  app.post('/user', (req, res) => {
+    db.collection('users').insert(req.body, (err, result) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(result.ops[0]);
+      }
+    });
+  });
+
   app.get('/user/:email', (req, res) => {
     const email = req.params.email;
     const detail = {'email': email};
-
-    console.log('req', req.params)
 
     db.collection('users').findOne(detail, (err, item) => {
       if (err) {
@@ -64,17 +72,6 @@ module.exports = function (app, database) {
         res.send(item);
       }
     })
-  });
-
-  app.post('/notes', (req, res) => {
-    const note = {text: req.body.body, title: req.body.title};
-    db.collection('users').insert(note, (err, result) => {
-      if (err) {
-        res.send({'error': 'An error has occurred'});
-      } else {
-        res.send(result.ops[0]);
-      }
-    });
   });
 
 };
