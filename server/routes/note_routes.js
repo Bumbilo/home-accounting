@@ -10,6 +10,10 @@ module.exports = function (app, database) {
     next();
   });
 
+  app.get('/', (req, res) => {
+    res.send('Hello world');
+  });
+
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };

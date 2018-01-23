@@ -40,5 +40,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
+
+# Config file
+/server/db.js
 ./server/db.js
 

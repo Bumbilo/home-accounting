@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { UserService } from "./shared/services/user.service";
+import { AuthService } from "./shared/services/auth.service";
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { UserService } from "./shared/services/user.service";
     AuthModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
