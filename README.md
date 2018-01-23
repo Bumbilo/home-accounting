@@ -24,77 +24,77 @@ https://github.com/Bumbilo/home-accounting.git
 <a name="structure"></a>
 Project contains two sub-projects for back-end and front-end sources. Front-end sub-project contains two modules for website and administration panel sources.
 ```sh
-angular-project/
-|----design/                                          // Folder with design project
-|----e2e/                                             // Tests files
-|     |--app.e2e-spec.ts                              //
-|     |--app.po.ts                                    //
-|----node_modules/                                    // Source libraries
-|----server/                                          // Server for application
-|     |--routes/                                      // Module for routes
-|         |--index.js                                 // Barrel file
-|         |--node_routes.js                           // Request routes
-|     |--db.js                                        // configuration DB
-|     |--index.js                                     // Root file for nodejs server
-|----src/                                             // This is the root folder
-|     |--app/                                         // This folder contains the Angular code files
-|         |-auth/                                     //
-|            |--login/                                //
-|                  |--login.component.html            //
-|                  |--login.component.sass            //
-|                  |--login.component.spec.ts         //
-|                  |--login.component.ts              //
-|            |--registration/                         //
-|                  |--registration.html               //
-|                  |--registration.component.sass     //
-|                  |--registration.component.spec.ts  //
-|                  |--registration.component.ts       //
-|            |--auth/                                 //
-|                  |--auth.routing.module.ts          //
-|                  |--auth.component.html             //
-|                  |--auth.component.ts               //
-|                  |--auth.module.ts                  //
-|            |--shared/                               //
-|                  |--modules/                        //
-|                       |--message.module.ts          //
-|                       |--user.module.ts             //
-|                  |--services/                       //
-|                       |--user.service.ts            //
-|                  |--index.ts                        //
-|                  |--shared.module.ts                //
-|           |--system/                                //
-|                  |--system.module.ts                //
-|         |--app.component.html                       //
-|         |--app.component.sass                       //
-|         |--app.component.spec.ts                    //
-|         |--app.component.ts                         //
-|         |--app.module.ts                            //
-|     |--asset/                                       // Folder for static files
-|         |--fonts/                                   // All fonts for project
-|         |--.gitkeep                                 //
-|         |--theme.css                                //
-|         |--vendor.css                               //
-|     |--enviroments/                                 //
-|         |--environment.prod.ts                      //
-|         |--environment.ts                           //
-|     |--index.html                                   //
-|     |--main.ts                                      //
-|     |--polyfills.ts                                 //
-|     |--styles.sass                                  //
-|     |--test.ts                                      //
-|     |--tsconfig.app.json                            //
-|     |--tsconfig.spec.json                           //
-|     |--typings.d.ts                                 //
-|----.angular-cli.json                                //
-|----.editorconfig                                    //
-|----.gitignore                                       //
-|----karma.conf.js                                    //
-|----package.json                                     // This file used by NPM for its configuration file
-|----package-lock.json                                //
-|----protractor.conf.js                               //
-|----README.md                                        //
-|----tsconfig.json                                    //
-|----tslint.json                                      //
+angular-project
+├── design                                                      // Folder with design project
+├── e2e                                                         // Tests files
+│     ├── app.e2e-spec.ts                                       //
+│     └── app.po.ts                                             //
+├── node_modules                                                // Source libraries
+├── server                                                      // Server
+│     ├── routes                                                // Module with routes
+│     │    ├── index.js                                         // Barrel file
+│     │    └── node_routes.js                                   // Request routes
+│     ├── db.js                                                 // configuration DB
+│     └──index.js                                               // Root file - nodejs server
+├── src                                                         // This is the root folder
+│     ├── app                                                   // This folder contains the Angular code files
+│     │     ├── auth                                            //
+│     │     │    ├──login                                       //
+│     │     │    │    ├── login.component.html                  //
+│     │     │    │    ├── login.component.sass                  //
+│     │     │    │    ├── login.component.spec.ts               //
+│     │     │    │    └── login.component.ts                    //
+│     │     │    ├── registration                               //
+│     │     │    │    ├── registration.html                     //
+│     │     │    │    ├── registration.component.sass           //
+│     │     │    │    ├── registration.component.spec.ts        //
+│     │     │    │    └── registration.component.ts             //
+│     │     │    ├── auth.routing.module.ts                     //
+│     │     │    ├── auth.component.html                        //
+│     │     │    ├── auth.component.ts                          //
+│     │     │    └── auth.module.ts                             //
+│     │     ├── shared                                          //
+│     │     │    ├── modules                                    //
+│     │     │    │    ├── message.module.ts                     //
+│     │     │    │    └── user.module.ts                        //
+│     │     │    │        └── user.service.ts                   //
+│     │     │    ├── services                                   //
+│     │     │    │    └── user.service.ts                       //
+│     │     │    ├── index.ts                                   //
+│     │     │    └── shared.module.ts                           //
+│     │     ├── system                                          //
+│     │     │    └── system.module.ts                           //
+│     │     ├── app.component.html                              //
+│     │     ├── app.component.sass                              //
+│     │     ├── app.component.spec.ts                           //
+│     │     ├── app.component.ts                                //
+│     │     └── app.module.ts                                   //
+│     ├── asset                                                 // Folder for static files
+│     │     ├── fonts                                           // All fonts for project
+│     │     ├── .gitkeep                                        //
+│     │     ├── theme.css                                       //
+│     │     └── vendor.css                                      //
+│     ├── enviroments                                           //
+│     │     ├── environment.prod.ts                             //
+│     │     └── environment.ts                                  //
+│     ├── index.html                                            //
+│     ├── main.ts                                               //
+│     ├── polyfills.ts                                           //
+│     ├── styles.sass                                           //
+│     ├── test.ts                                               //
+│     ├── tsconfig.app.json                                      //
+│     ├── tsconfig.spec.json                                     //
+│     └── typings.d.ts                                          //
+├── .angular-cli.json                                           //
+├── .editorconfig                                                //
+├── .gitignore                                                  //
+├── karma.conf.js                                               //
+├── package.json                                                // This file used by NPM for its configuration file
+├── package-lock.json                                           //
+├── protractor.conf.js                                          //
+├── README.md                                                   //
+├── tsconfig.json                                                //
+└── tslint.json                                                 //
 ```
 
 ## Back-end

@@ -22,4 +22,8 @@ export class UserService {
     return this.http.get(`http://localhost:8000/user/${email}`)
     .map((response: Response) => this.getResponse(response));
   }
+
+  createNewUser(): Observable<User> {
+     return this.http.post()
+ }
 }
