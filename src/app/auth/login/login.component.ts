@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   private showMessage(text: string, type: string ) {
     this.message = new Message(type , text);
     // hide message after 5 second
-    window.setTimeout(() => this.message = '', 5000);
+    window.setTimeout(() => {this.message = ''}, 5000);
   }
 
   // send form for auth
