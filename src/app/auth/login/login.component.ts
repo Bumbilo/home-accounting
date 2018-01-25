@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       console.log(params)
       if(params['nowCanLogin']) {
-        console.log('true')
+        console.log('true', this)
+        this.showMessage('Invalid password !!!', 'danger');
         this.showMessage('Now you can enter to system !!!', 'success')
       }
     });
@@ -55,7 +56,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
     this.userService.getUserByEmail(formData.email).subscribe((user: User) => {
-      console.log('user', user)
       if (user) {
         if (user.password == formData.password) {
            window.localStorage.setItem('user', JSON.stringify(user));
