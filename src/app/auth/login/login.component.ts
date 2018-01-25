@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.message = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
       console.log(params)
       if(params['nowCanLogin']) {
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
         this.showMessage('Now you can enter to system !!!', 'success')
       }
     });
-    this.message = new Message('danger', '');
 
   // vsalidation form before send form
    this.form = new FormGroup({
