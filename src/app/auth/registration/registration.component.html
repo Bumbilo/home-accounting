@@ -5,7 +5,6 @@
       [ngClass]="{'has-error' : form.get('email').invalid && form.get('email').touched}">
     <label for="email">Email</label>
     <input
-
       type="text"
       class="form-control underlined"
       id="email"
@@ -18,6 +17,7 @@
     >
       <span *ngIf="form.get('email')['errors']['required']">Email is empty ! </span>
       <span *ngIf="form.get('email')['errors']['email']">Enter correct email ! </span>
+      <span *ngIf="form.get('email')['errors']['forbiddenEmail']">Email already exists ! </span>
     </span>
   </div>
   <div
