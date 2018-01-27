@@ -57,13 +57,21 @@ angular-project
 │     │     │    ├── modules                                    //
 │     │     │    │    ├── message.module.ts                     //
 │     │     │    │    └── user.module.ts                        //
-│     │     │    │        └── user.service.ts                   //
 │     │     │    ├── services                                   //
+│     │     │    │    ├── auth.service.ts                       //
 │     │     │    │    └── user.service.ts                       //
 │     │     │    ├── index.ts                                   //
 │     │     │    └── shared.module.ts                           //
 │     │     ├── system                                          //
+│     │     │    ├── bill-page                                  //
+│     │     │    ├── history-page                               //
+│     │     │    ├── planing-page                               //
+│     │     │    ├── records-page                               //
+│     │     │    ├── system-routing.module.ts                   //
+│     │     │    ├── system.component.html                      //
+│     │     │    ├── system.component.ts                        //
 │     │     │    └── system.module.ts                           //
+│     │     ├── app-routing.module.ts                           //
 │     │     ├── app.component.html                              //
 │     │     ├── app.component.sass                              //
 │     │     ├── app.component.spec.ts                           //
