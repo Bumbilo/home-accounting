@@ -39,12 +39,12 @@ angular-project
 ├── src                                                         // This is the root folder
 │     ├── app                                                   // This folder contains the Angular code files
 │     │     ├── auth                                            //
-│     │     │    ├──login                                       //
+│     │     │    ├──login                                       // Login folder
 │     │     │    │    ├── login.component.html                  //
 │     │     │    │    ├── login.component.sass                  //
 │     │     │    │    ├── login.component.spec.ts               //
 │     │     │    │    └── login.component.ts                    //
-│     │     │    ├── registration                               //
+│     │     │    ├── registration                               // Regestration folder
 │     │     │    │    ├── registration.html                     //
 │     │     │    │    ├── registration.component.sass           //
 │     │     │    │    ├── registration.component.spec.ts        //
@@ -53,7 +53,7 @@ angular-project
 │     │     │    ├── auth.component.html                        //
 │     │     │    ├── auth.component.ts                          //
 │     │     │    └── auth.module.ts                             //
-│     │     ├── shared                                          //
+│     │     ├── shared                                          // Common modules
 │     │     │    ├── modules                                    //
 │     │     │    │    ├── message.module.ts                     //
 │     │     │    │    └── user.module.ts                        //
@@ -62,7 +62,7 @@ angular-project
 │     │     │    │    └── user.service.ts                       //
 │     │     │    ├── index.ts                                   //
 │     │     │    └── shared.module.ts                           //
-│     │     ├── system                                          //
+│     │     ├── system                                          // System module
 │     │     │    ├── bill-page                                  //
 │     │     │    ├── history-page                               //
 │     │     │    ├── planing-page                               //
