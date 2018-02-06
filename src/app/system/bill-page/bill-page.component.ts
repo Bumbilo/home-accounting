@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BillService} from "../shared/services/bill.service";
 
 @Component({
   selector: 'app-bill-page',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private billService: BillService) { }
 
   ngOnInit() {
   }
