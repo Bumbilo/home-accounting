@@ -61,6 +61,18 @@ module.exports = function (app, database) {
     });
   });
 
+  // Get bill {currency, value}
+  app.get('/bill', (req, res) => {
+
+    db.collection('bill').findOne( (err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    })
+  });
+
   app.get('/user/:email', (req, res) => {
     const email = req.params.email;
     const detail = {'email': email};
