@@ -3,28 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/user.model';
+import { BaseApi } from '../core/base-api';
 
 @Injectable()
-export class UserService {
-  constructor(private http: Http) {
+export class UserService extends BaseApi {
+  constructor(public http: Http) {
+    super(http);
   }
-
-  // validation response
-  getResponse(response: Response) {
-   if (response['_body']) {
-      return response.json();
-   }
-   return null;
- }
 
   // get user information by ID
   getUserByEmail(email: string): Observable<User> {
-    return this.http.get(`http://localhost:8000/user/${email}`)
-    .map((response: Response) => this.getResponse(response));
+    return this.get(`user/${email}`);
   }
 
+  // create new user
   createNewUser(user: User): Observable<User> {
-     return this.http.post(`http://localhost:8000/user`, user)
-     .map((response: Response) => this.getResponse(response));
- }
+    return this.post('user', user);
+  }
+
 }
