@@ -28,9 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.message = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
-      console.log(params)
       if(params['nowCanLogin']) {
-        console.log('true', this)
         this.showMessage('Invalid password !!!', 'danger');
         this.showMessage('Now you can enter to system !!!', 'success')
       }

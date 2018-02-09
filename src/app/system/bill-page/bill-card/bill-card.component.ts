@@ -21,8 +21,6 @@ export class BillCardComponent implements OnInit {
     const { rates } = this.currency
     this.rub = rates['RUB'] * this.bill.value;
     this.euro = rates['EUR'] * this.bill.value;
-
-    console.log(this.currency);
   }
 
 }
