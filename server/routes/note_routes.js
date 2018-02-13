@@ -51,6 +51,20 @@ module.exports = function (app, database) {
     })
   });
 
+  /* REST API*/
+
+  // Create category
+  app.post('/categories', (req, res) => {
+    db.collection('categories').insert(req.body, (err, result) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        console.log(result);
+        res.send(result.ops[0]);
+      }
+    });
+  });
+
   app.post('/user', (req, res) => {
     db.collection('users').insert(req.body, (err, result) => {
       if (err) {
@@ -63,7 +77,6 @@ module.exports = function (app, database) {
 
   // Get bill {currency, value}
   app.get('/bill', (req, res) => {
-
     db.collection('bill').findOne( (err, item) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
@@ -73,6 +86,7 @@ module.exports = function (app, database) {
     })
   });
 
+  // Get user email
   app.get('/user/:email', (req, res) => {
     const email = req.params.email;
     const detail = {'email': email};

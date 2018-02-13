@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.message = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
-      if(params['nowCanLogin']) {
+      if (params['nowCanLogin']) {
         this.showMessage('Invalid password !!!', 'danger');
-        this.showMessage('Now you can enter to system !!!', 'success')
+        this.showMessage('Now you can enter to system !!!', 'success');
       }
     });
 
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
     this.userService.getUserByEmail(formData.email).subscribe((user: User) => {
       if (user) {
-        if (user.password == formData.password) {
+        if (user.password === formData.password) {
            window.localStorage.setItem('user', JSON.stringify(user));
            this.authService.login();
            this.router.navigate(['/system', 'bill']);

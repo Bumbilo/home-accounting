@@ -11,7 +11,7 @@ export class CategoriesService extends BaseApi {
   }
 
   addCategory(category: Category): Observable<Category> {
-    return this.http.post('')
+    return this.post('categories', category);
   }
 
 }
