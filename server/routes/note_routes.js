@@ -16,23 +16,23 @@ module.exports = function (app, database) {
 
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
+    const details = {'_id': new ObjectID(id)};
     db.collection('users').remove(details, (err, item) => {
       if (err) {
-        res.send({'error':'An error has occurred'});
+        res.send({'error': 'An error has occurred'});
       } else {
         res.send('Note ' + id + ' deleted!');
       }
     });
   });
 
-  app.put ('/notes/:id', (req, res) => {
+  app.put('/notes/:id', (req, res) => {
     const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    const note = { text: req.body.body, title: req.body.title };
+    const details = {'_id': new ObjectID(id)};
+    const note = {text: req.body.body, title: req.body.title};
     db.collection('users').update(details, note, (err, result) => {
       if (err) {
-        res.send({'error':'An error has occurred'});
+        res.send({'error': 'An error has occurred'});
       } else {
         res.send(note);
       }
@@ -65,6 +65,30 @@ module.exports = function (app, database) {
     });
   });
 
+  app.get('/categories', (req, res) => {
+    db.collection('categories').find().toArray((err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    });
+  });
+
+
+  app.put('/categories/:id', (req, res) => {
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    const note = {text: req.body.body, title: req.body.title};
+    db.collection('users').update(details, note, (err, result) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(note);
+      }
+    });
+  });
+
   app.post('/user', (req, res) => {
     db.collection('users').insert(req.body, (err, result) => {
       if (err) {
@@ -77,7 +101,7 @@ module.exports = function (app, database) {
 
   // Get bill {currency, value}
   app.get('/bill', (req, res) => {
-    db.collection('bill').findOne( (err, item) => {
+    db.collection('bill').findOne((err, item) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
