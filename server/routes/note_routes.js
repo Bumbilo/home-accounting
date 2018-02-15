@@ -67,6 +67,7 @@ module.exports = function (app, database) {
     });
   });
 
+  // Get all categories
   app.get('/categories', (req, res) => {
     db.collection('categories').find().toArray((err, item) => {
       if (err) {
@@ -77,6 +78,7 @@ module.exports = function (app, database) {
     });
   });
 
+  // Edit category
   app.put('/categories/:id', (req, res) => {
     const id = req.params.id;
     const details = {'_id': new ObjectID(id)};
@@ -90,7 +92,7 @@ module.exports = function (app, database) {
     });
   });
 
-
+  // Create new user for regestration
   app.post('/user', (req, res) => {
     db.collection('users').insert(req.body, (err, result) => {
       if (err) {

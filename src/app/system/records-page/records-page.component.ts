@@ -17,7 +17,6 @@ export class RecordsPageComponent implements OnInit {
   ngOnInit() {
     this.categoriesService.getCategories()
       .subscribe((categories: Category[]) => {
-        console.log(categories);
         this.categories = categories;
         this.isLoaded = true;
       });
@@ -25,6 +24,11 @@ export class RecordsPageComponent implements OnInit {
 
   newCategoryAdded(category: Category) {
     this.categories.push(category);
+  }
+
+  createCategoryWasEdited(category: Category) {
+    const idx = this.categories.findIndex(c => c._id === category._id);
+    this.categories[idx] = category;
   }
 
 }

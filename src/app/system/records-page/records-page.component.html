@@ -20,6 +20,7 @@
     <div class="col-md-6">
       <app-edit-category
         [categories]="categories"
+        (newCategoryAdded)="createCategoryWasEdited($event)"
       ></app-edit-category>
     </div>
   </div>

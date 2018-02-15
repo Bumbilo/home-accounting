@@ -1,12 +1,20 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BaseApi {
   private baseUrl = 'http://localhost:8000/';
+  private headers = new Headers();
+  private options: RequestOptions;
 
   constructor(public http: Http) {
+    this.headers.append("Content-Type", "application/json");
+    this.headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    this.headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    console.log(this.headers)
+
+    this.options = new RequestOptions({headers: this.headers});
   }
 
   private getUrl(url: string): string {

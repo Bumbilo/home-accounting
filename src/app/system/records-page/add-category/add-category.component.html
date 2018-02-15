@@ -51,7 +51,11 @@
           class="form-help-text"
         >Field is empty</span>
       </div>
-      <button type="submit" class="btn btn-primary">Add</button>
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="form.invalid"
+        >Add</button>
     </form>
   </div>
 </div>
