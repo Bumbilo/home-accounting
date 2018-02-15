@@ -6,7 +6,8 @@ module.exports = function (app, database) {
 
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
 
@@ -53,6 +54,7 @@ module.exports = function (app, database) {
 
   /* REST API*/
 
+
   // Create category
   app.post('/categories', (req, res) => {
     db.collection('categories').insert(req.body, (err, result) => {
@@ -75,12 +77,11 @@ module.exports = function (app, database) {
     });
   });
 
-
   app.put('/categories/:id', (req, res) => {
     const id = req.params.id;
     const details = {'_id': new ObjectID(id)};
-    const note = {text: req.body.body, title: req.body.title};
-    db.collection('users').update(details, note, (err, result) => {
+    const note = {name: req.body.name, capacity: req.body.capacity};
+    db.collection('categories').update(details, note, (err, result) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -88,6 +89,7 @@ module.exports = function (app, database) {
       }
     });
   });
+
 
   app.post('/user', (req, res) => {
     db.collection('users').insert(req.body, (err, result) => {
