@@ -1,6 +1,6 @@
 <div class="title-block">
   <h3 class="title">
-    Страница записей <span class="sparkline bar"></span>
+    Records page<span class="sparkline bar"></span>
   </h3>
 </div>
 
@@ -10,10 +10,11 @@
 <section class="section" *ngIf="isLoaded">
   <div class="row">
     <div class="col-md-6">
-      <app-add-event></app-add-event>
+      <app-add-event [categories]="categories"></app-add-event>
     </div>
     <div class="col-md-6">
-      <app-add-category (onCategoryAdd)="newCategoryAdded($event)"></app-add-category>
+      <app-add-category (onCategoryAdd)="newCategoryAdded($event)">
+      </app-add-category>
     </div>
   </div>
   <div class="row">

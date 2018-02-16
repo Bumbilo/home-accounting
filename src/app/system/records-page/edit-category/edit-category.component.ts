@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Category } from '../../shared/models/category.model';
 import { CategoriesService } from '../../shared/services/categories.service';
+import { Message } from '../../../shared/models/message.model';
 
 @Component({
   selector: 'app-edit-category',
@@ -14,12 +15,14 @@ export class EditCategoryComponent implements OnInit {
 
   currentCategoryId = '5a834936734d1d1523daef08';
   currentCategory: Category;
+  message: Message;
 
 
   constructor(private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
+    this.message = new Message('success', '');
     this.onCategoryChange();
   }
 
@@ -29,7 +32,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let { name, capacity } = form.value;
+    let {name, capacity} = form.value;
     if (capacity < 0) capacity *= -1;
 
     const category = new Category(name, capacity, this.currentCategoryId);
@@ -37,7 +40,11 @@ export class EditCategoryComponent implements OnInit {
     this.categoriesService.updateCategory(category)
       .subscribe((category: Category) => {
         this.newCategoryEdit.emit(category);
-    });
+        this.message.text = 'Category successful edit !';
+        window.setTimeout(() => {
+          this.message.text = '';
+        }, 5000);
+      });
   }
 
 }
