@@ -32,7 +32,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let {name, capacity} = form.value;
+    let { name, capacity } = form.value;
     if (capacity < 0) capacity *= -1;
 
     const category = new Category(name, capacity, this.currentCategoryId);

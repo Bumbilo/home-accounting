@@ -13,7 +13,7 @@
       <app-add-event [categories]="categories"></app-add-event>
     </div>
     <div class="col-md-6">
-      <app-add-category (onCategoryAdd)="newCategoryAdded($event)">
+      <app-add-category (categoryAdd)="newCategoryAdded($event)">
       </app-add-category>
     </div>
   </div>

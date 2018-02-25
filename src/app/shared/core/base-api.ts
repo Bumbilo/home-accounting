@@ -1,6 +1,6 @@
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class BaseApi {
@@ -23,7 +23,7 @@ export class BaseApi {
 
   public get(url: string = ''): Observable<any> {
     return this.http.get(this.getUrl(url))
-      .map((response: Response) => response.json());
+      .map((response: Response) => response['_body'] ? response.json() : undefined);
   }
 
   public post(url: string = '', data: any = {}): Observable<any> {

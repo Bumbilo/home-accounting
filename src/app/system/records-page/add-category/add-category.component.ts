@@ -9,7 +9,7 @@ import { Category } from '../../shared/models/category.model';
   styleUrls: ['./add-category.component.sass']
 })
 export class AddCategoryComponent {
-  @Output() onCategoryAdd = new EventEmitter<Category>();
+  @Output() categoryAdd = new EventEmitter<Category>();
 
   constructor(private categoriesService: CategoriesService) {
   }
@@ -19,12 +19,14 @@ export class AddCategoryComponent {
     if (capacity < 0) {
       capacity *= -1;
     }
+
     const category = new Category(name, capacity);
+
     this.categoriesService.addCategory(category)
       .subscribe((category: Category) => {
         form.reset();
         form.form.patchValue({capacity: 1});
-        this.onCategoryAdd.emit(category);
+        this.categoryAdd.emit(category);
       });
   }
 
