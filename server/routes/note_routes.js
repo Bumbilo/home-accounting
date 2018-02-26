@@ -114,6 +114,18 @@ module.exports = function (app, database) {
     })
   });
 
+  app.put('/bill/:id', (req, res) => {
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    db.collection('bill').update(details, req.body, (err, result) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(note);
+      }
+    });
+  });
+
   // Get user email
   app.get('/user/:email', (req, res) => {
     const email = req.params.email;
@@ -126,6 +138,16 @@ module.exports = function (app, database) {
         res.send(item);
       }
     })
+  });
+
+  app.post('/events', (req, res) => {
+    db.collection('events').insert(req.body, (err, result) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(result.ops[0]);
+      }
+    });
   });
 
 };
