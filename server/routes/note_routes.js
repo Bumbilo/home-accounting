@@ -52,6 +52,7 @@ module.exports = function (app, database) {
     })
   });
 
+
   /* REST API*/
 
 
@@ -114,6 +115,7 @@ module.exports = function (app, database) {
     })
   });
 
+  // Update bill value
   app.put('/bill/:id', (req, res) => {
     const id = req.params.id;
     const details = {'_id': new ObjectID(id)};
@@ -121,7 +123,7 @@ module.exports = function (app, database) {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send(note);
+        res.send(req.body);
       }
     });
   });
@@ -130,7 +132,6 @@ module.exports = function (app, database) {
   app.get('/user/:email', (req, res) => {
     const email = req.params.email;
     const detail = {'email': email};
-
     db.collection('users').findOne(detail, (err, item) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
