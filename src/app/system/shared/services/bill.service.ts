@@ -23,4 +23,8 @@ export class BillService extends BaseApi {
       .map((response: Response) => response.json());
   }
 
+  updateBill(bill: Bill, url): Observable<Bill> {
+    return this.put(`bill/${url}`, bill);
+  }
+
 }
