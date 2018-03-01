@@ -20,57 +20,21 @@
           <div class="row" *ngFor="let c of categories">
             <div class="col-xs-6">
               <div class="n-progress">
-                <div class="progress-bar success">
+                <div class="progress-bar {{getColorClass(c)}}" [ngStyle]="{width: getCategoryPercent(c)}">
                   <span>{{c.name}}</span>
                 </div>
               </div>
             </div>
             <div class="col-xs-6">
               <p>
-                <span class="text-success">{{getCategoryCost(c)}}</span>
-                из
+                <span class="text-{{getColorClass(c)}}">{{getCategoryCost(c)}}</span>
+                of
                 <span class="text-primary">{{c.capacity | number: '1.2'}}</span>
                 |
-                осталось <span class="text-success">700.00</span> (руб.)
+                left <span class="text-{{getColorClass(c)}}">{{c.capacity - getCategoryCost(c) | number: '1.2'}}</span> $
               </p>
             </div>
           </div>
-          <!--<div class="row">-->
-            <!--<div class="col-xs-6">-->
-              <!--<div class="n-progress">-->
-                <!--<div class="progress-bar warning" style="width: 60%;">-->
-                  <!--<span>Название категории</span>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-xs-6">-->
-              <!--<p>-->
-                <!--<span class="text-warning">600.00</span>-->
-                <!--из-->
-                <!--<span class="text-primary">1000.00</span>-->
-                <!--|-->
-                <!--осталось <span class="text-success">400.00</span> (руб.)-->
-              <!--</p>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-6">-->
-              <!--<div class="n-progress">-->
-                <!--<div class="progress-bar danger" style="width: 100%;">-->
-                  <!--<span>Название категории</span>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-xs-6">-->
-              <!--<p>-->
-                <!--<span class="text-danger">1200.00</span>-->
-                <!--из-->
-                <!--<span class="text-primary">1000.00</span>-->
-                <!--|-->
-                <!--осталось <span class="text-danger">-200.00</span> (руб.)-->
-              <!--</p>-->
-            <!--</div>-->
-          <!--</div>-->
         </div>
       </div>
     </div>

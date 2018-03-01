@@ -42,6 +42,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     let {amount, description, category, type} = form.value;
+    console.log(form.value);
     if (amount < 0) {
       amount *= -1;
     }
@@ -60,12 +61,13 @@ export class AddEventComponent implements OnInit, OnDestroy {
         value = bill.value + amount;
       }
       this.sub2 = this.billService.updateBill({value, currency: bill.currency}, bill['_id'])
-        .mergeMap(() => this.eventsService.addEvent(event))
-        .subscribe(() => {
+        .mergeMap(() => this.eventsService.addEvent(event)).subscribe(() => {
           form.setValue({amount: 0, description: '', category: this.currentCategory, type: 'outcome'});
         });
     });
-    const event = new WFMEvent(type, moment().format('DD.MM.YYYY HH:mm:ss'), amount, +category, description);
+
+    const event = new WFMEvent(type, moment().format('DD.MM.YYYY HH:mm:ss'), amount, category, description);
+    console.log(event)
   }
 
 

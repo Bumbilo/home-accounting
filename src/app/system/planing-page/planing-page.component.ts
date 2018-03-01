@@ -31,6 +31,7 @@ export class PlaningPageComponent implements OnInit, OnDestroy {
       this.categoryService.getCategories(),
       this.eventService.getEvents()
     ).subscribe((data: [Bill, Category[], WFMEvent[]]) => {
+      console.log(data);
       this.bill = data[0];
       this.categories = data[1];
       this.events = data[2];
@@ -40,7 +41,26 @@ export class PlaningPageComponent implements OnInit, OnDestroy {
   }
 
   getCategoryCost(cat: Category) {
-    // const catEvents = this.events.filter(event => event.category._id === cat._id && event.type === 'outcome')
+    return this.events
+      .filter(event => event.category === cat._id && event.type === 'outcome')
+      .reduce((acc, current) => {
+        acc += current.amount;
+        return acc;
+      }, 0);
+  }
+
+  private getPercent(cat: Category): number {
+    const percent = (100 * this.getCategoryCost(cat)) / cat.capacity;
+    return percent > 100 ? 100 : percent;
+  }
+
+  getCategoryPercent(cat: Category): string {
+    return this.getPercent(cat) + '%';
+  }
+
+  getColorClass(cat: Category): string {
+    const percent = this.getPercent(cat);
+    return percent < 60 ? 'success' : percent >= 100 ? 'danger' : 'warning';
   }
 
 
