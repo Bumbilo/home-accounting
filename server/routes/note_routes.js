@@ -141,6 +141,16 @@ module.exports = function (app, database) {
     })
   });
 
+  app.get('/events', (req, res) => {
+    db.collection('events').find().toArray((err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    });
+  });
+
   app.post('/events', (req, res) => {
     db.collection('events').insert(req.body, (err, result) => {
       if (err) {
