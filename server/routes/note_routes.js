@@ -93,6 +93,18 @@ module.exports = function (app, database) {
     });
   });
 
+  app.get('/categories/:id', (req, res) => {
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    db.collection('categories').findOne(details, (err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    })
+  });
+
   // Create new user for regestration
   app.post('/user', (req, res) => {
     db.collection('users').insert(req.body, (err, result) => {
@@ -149,6 +161,18 @@ module.exports = function (app, database) {
         res.send(item);
       }
     });
+  });
+
+  app.get('/events/:id', (req, res) => {
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    db.collection('events').findOne(details, (err, item) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    })
   });
 
   app.post('/events', (req, res) => {

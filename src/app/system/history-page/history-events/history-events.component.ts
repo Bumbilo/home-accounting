@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category } from "../../shared/models/category.model";
-import { WFMEvent } from "../../shared/models/event.model";
+import { Category } from '../../shared/models/category.model';
+import { WFMEvent } from '../../shared/models/event.model';
 
 @Component({
   selector: 'app-history-events',
@@ -10,6 +10,9 @@ import { WFMEvent } from "../../shared/models/event.model";
 export class HistoryEventsComponent implements OnInit {
   @Input() categories: Category[] = [];
   @Input() events: WFMEvent[] = [];
+  searchValue = '';
+  searchPlaceholder = 'Amount';
+  searchField = 'amount';
 
   constructor() {
   }
@@ -26,6 +29,18 @@ export class HistoryEventsComponent implements OnInit {
       'label-danger': event.type === 'outcome',
       'label-success': event.type === 'income'
     };
+  }
+
+  changeCriteria(field) {
+    const namesMap = {
+      amount: 'Amount',
+      date: 'Date',
+      category: 'Category',
+      type: 'Type'
+    };
+
+    this.searchPlaceholder = namesMap[field.target.name];
+    this.searchField = field.target.name;
   }
 
 }

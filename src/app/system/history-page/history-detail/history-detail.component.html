@@ -1,3 +1,36 @@
-<p>
-  history-detail works!
-</p>
+<div class="text-center" *ngIf="!isLoaded"></div>
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/history']"><i class="fa fa-arrow-left"></i></a>
+      Recording page № {{event._id}}
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="card" [ngClass]="{
+        'card-success': event.type === 'income',
+        'card-danger': event.type === 'outcome'
+        }">
+          <div class="card-header">
+            <div class="header-block">
+              <p class="title" style="text-transform: capitalize;">
+                {{event.type}}
+              </p>
+            </div>
+          </div>
+          <div class="card-block">
+            <ul>
+              <li>Amount: <strong>{{event.amount | number:'1.2'}} $</strong></li>
+              <li>Категория: <strong>{{category.name}}</strong></li>
+              <li>Comment: <strong>{{event.description}}</strong></li>
+            </ul>
+          </div>
+          <div class="card-footer">{{event.date}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

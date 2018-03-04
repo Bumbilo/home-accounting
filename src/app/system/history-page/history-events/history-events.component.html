@@ -4,22 +4,29 @@
       <div class="card">
         <div class="card-header bordered">
           <div class="header-block">
-            <h3 class="title">Список событий</h3>
+            <h3 class="title">Event list</h3>
           </div>
           <div class="form-inline pull-right m-r-2">
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="Поиск...">
+              <input
+                type="text"
+                class="form-control"
+                [placeholder]="searchPlaceholder"
+                [(ngModel)]="searchValue"
+              >
             </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-secondary dropdown-toggle ">
-                Параметр
+            <div class="btn-group" appDropdown>
+              <button
+                type="button"
+                class="btn btn-secondary dropdown-toggle"
+              >
+                Parameter
               </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+              <div class="dropdown-menu" (click)="changeCriteria($event)">
+                <a class="dropdown-item" name="amount">Amount</a>
+                <a class="dropdown-item" name="date">Date</a>
+                <a class="dropdown-item" name="category">Category</a>
+                <a class="dropdown-item" name="type">Type</a>
               </div>
             </div>
           </div>
@@ -37,7 +44,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let event of events; let idx = index">
+            <tr *ngFor="let event of events | appFilter:searchValue:searchField; let idx = index">
               <th scope="row">{{idx + 1}}</th>
               <td>{{event.amount | number:'1.2'}}</td>
               <td>{{event.date | appMoment: 'DD.MM.YYYY HH.mm.ss'}}</td>
@@ -52,18 +59,6 @@
                 <a [routerLink]="['/system/history', event['_id']]" class="btn btn-primary-outline">Open</a>
               </td>
             </tr>
-            <!--<tr>-->
-            <!--<th scope="row">2</th>-->
-            <!--<td>33 333</td>-->
-            <!--<td>12.12.2017</td>-->
-            <!--<td>Отдых</td>-->
-            <!--<td>-->
-            <!--<span class="label label-success">Доход</span>-->
-            <!--</td>-->
-            <!--<td class="text-lg-center">-->
-            <!--<a href="#" class="btn btn-primary-outline">Открыть</a>-->
-            <!--</td>-->
-            <!--</tr>-->
             </tbody>
           </table>
         </div>
