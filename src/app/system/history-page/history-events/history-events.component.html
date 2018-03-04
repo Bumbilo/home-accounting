@@ -29,38 +29,41 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Сумма</th>
-              <th>Дата</th>
-              <th>Категория</th>
-              <th>Тип</th>
-              <th class="text-lg-center">Действие</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Type</th>
+              <th class="text-lg-center">Event</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>44 444</td>
-              <td>12.12.2017</td>
-              <td>Товары</td>
+            <tr *ngFor="let event of events; let idx = index">
+              <th scope="row">{{idx + 1}}</th>
+              <td>{{event.amount | number:'1.2'}}</td>
+              <td>{{event.date | appMoment: 'DD.MM.YYYY HH.mm.ss'}}</td>
+              <td>{{event.catName}}</td>
               <td>
-                <span class="label label-danger">Расход</span>
+                <span [ngClass]="getEventClass(event)">
+                <span *ngIf="event.type === 'income'">Income</span>
+                <span *ngIf="event.type === 'outcome'">Outcome</span>
+                </span>
               </td>
               <td class="text-lg-center">
-                <a href="#" class="btn btn-primary-outline">Открыть</a>
+                <a [routerLink]="['/system/history', event['_id']]" class="btn btn-primary-outline">Open</a>
               </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>33 333</td>
-              <td>12.12.2017</td>
-              <td>Отдых</td>
-              <td>
-                <span class="label label-success">Доход</span>
-              </td>
-              <td class="text-lg-center">
-                <a href="#" class="btn btn-primary-outline">Открыть</a>
-              </td>
-            </tr>
+            <!--<tr>-->
+            <!--<th scope="row">2</th>-->
+            <!--<td>33 333</td>-->
+            <!--<td>12.12.2017</td>-->
+            <!--<td>Отдых</td>-->
+            <!--<td>-->
+            <!--<span class="label label-success">Доход</span>-->
+            <!--</td>-->
+            <!--<td class="text-lg-center">-->
+            <!--<a href="#" class="btn btn-primary-outline">Открыть</a>-->
+            <!--</td>-->
+            <!--</tr>-->
             </tbody>
           </table>
         </div>

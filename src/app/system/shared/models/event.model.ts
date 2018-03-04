@@ -4,7 +4,8 @@ export class WFMEvent {
               public amount: number,
               public category: string,
               public description: string,
-              public id?: string) {
+              public id?: string,
+              public catName?: string) {
 
   }
 }
