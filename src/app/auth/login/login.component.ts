@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
       if (params['nowCanLogin']) {
         this.showMessage('Invalid password !!!', 'danger');
         this.showMessage('Now you can enter to system !!!', 'success');
+      } else if (params['accessDenied']) {
+        this.showMessage('You need to login !!!', 'warning');
       }
     });
 

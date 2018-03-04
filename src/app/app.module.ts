@@ -7,8 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { UserService } from './shared/services/user.service';
 import { AuthService } from './shared/services/auth.service';
-import { SystemModule } from './system/system.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './shared/services/auth.guard';
 
 
 @NgModule({
@@ -20,9 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpModule,
     AuthModule,
     AppRoutingModule,
-    SystemModule
+    BrowserAnimationsModule
   ],
-  providers: [UserService, AuthService, BrowserAnimationsModule],
+  providers: [UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
