@@ -12,8 +12,6 @@ export class BaseApi {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     this.headers.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    console.log(this.headers);
-
     this.options = new RequestOptions({headers: this.headers});
   }
 

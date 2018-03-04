@@ -31,7 +31,6 @@ export class PlaningPageComponent implements OnInit, OnDestroy {
       this.categoryService.getCategories(),
       this.eventService.getEvents()
     ).subscribe((data: [Bill, Category[], WFMEvent[]]) => {
-      console.log(data);
       this.bill = data[0];
       this.categories = data[1];
       this.events = data[2];

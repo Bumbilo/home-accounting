@@ -42,7 +42,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     let {amount, description, category, type} = form.value;
-    console.log(form.value);
     if (amount < 0) {
       amount *= -1;
     }
@@ -67,7 +66,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     });
 
     const event = new WFMEvent(type, moment().format('DD.MM.YYYY HH:mm:ss'), amount, category, description);
-    console.log(event)
   }
 
 
