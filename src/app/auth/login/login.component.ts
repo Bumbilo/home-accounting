@@ -6,11 +6,14 @@ import { UserService } from '../../shared/services/user.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { Message } from '../../shared/models/message.model';
 import { User } from '../../shared/models/user.model';
+import { fadeStateTriger } from '../../shared/animations/fade.amination';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.sass'],
+  animations: [fadeStateTriger]
 })
 export class LoginComponent implements OnInit {
 
@@ -21,8 +24,15 @@ export class LoginComponent implements OnInit {
      private userService: UserService,
      private authService: AuthService,
      private router: Router,
-     private route: ActivatedRoute
+     private route: ActivatedRoute,
+     private title: Title,
+     private meta: Meta
   ) {
+    title.setTitle('Login in system');
+    meta.addTags([
+      {name: 'keywords', content: 'login in system'},
+      {name: 'description', content: 'Page for enter in system'}
+      ]);
   }
 
   ngOnInit() {

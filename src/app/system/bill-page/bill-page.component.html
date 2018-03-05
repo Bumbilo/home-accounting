@@ -9,8 +9,8 @@
   </div>
 </div>
 <section class="section">
-  <div class="row" *ngIf="!isLoaded">
-    Loading...
+  <div class="row text-center" *ngIf="!isLoaded">
+    <app-loader></app-loader>
   </div>
   <div class="row"  *ngIf="isLoaded">
     <app-bill-card

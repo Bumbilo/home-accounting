@@ -9,7 +9,9 @@
   </div>
 </div>
 
-<div *ngIf="!isLoaded">Loading...</div>
+<div class="text-center" *ngIf="!isLoaded">
+  <app-loader></app-loader>
+</div>
 
 <div *ngIf="isLoaded">
   <app-history-chart [data]="chartData"></app-history-chart>
